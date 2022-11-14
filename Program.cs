@@ -31,30 +31,26 @@ namespace TP04
         public double claculateDistance(Point point)
         {
             double distance;
-            distance = Math.Sqrt(Math.Pow(this.x - point.x, 2) + Math.Pow(this.y - point.y, 2));
+            distance = Math.Sqrt(Math.Pow(this.x - point.getX(), 2) + Math.Pow(this.y - point.getY(), 2));
             return distance;
         }
-        public bool eqaulsTo(ref Point point)
+        public bool eqaulsTo(Point point)
         {
-            return (this.x == point.x) && (this.y == point.y);
+            return (this.x == point.getX()) && (this.y == point.getY());
         }
-        public Point translation(double x = 0, double y = 0)
+        public void translation(double x = 0, double y = 0)
         {
             this.x += x;
             this.y += y;
-            return this;
         }
         public bool linearity(Point a, Point b)
         {
-            //double determinant = (b.GetX() - this.GetX() * (c.GetY() - this.GetY()) - (c.GetY() - this.GetX()) * (b.GetY() - this.GetY()));
-            //return determinant == 0;
-            double area = x * (a.y - b.y) + a.x * (b.y - y) + b.x * (y - a.y);
+            double area = x * (a.getY() - b.getY()) + a.getX() * (b.getY() - a.getY()) + b.getX() * (y - a.getY());
             return (area == 0);
         }
     }
     public class Line
     {
-
         private Point p1 = new Point();
         private Point p2 = new Point();
         public Line(Point p1, Point p2)
@@ -80,8 +76,8 @@ namespace TP04
         }
         public bool parallelism(Line ln)
         {
-            // if the slop of the fist line is eqaul to the slop of the second one then parallelism between the two is true
-            return this.slop() == ln.slop();
+            // parallelism between two lines is true only if the slop of the two are equal
+            return (this.slop() == ln.slop());
         }
         public bool intersection(Line ln)
         {
@@ -90,7 +86,7 @@ namespace TP04
         }
         public bool perpendicular(Line ln)
         {
-            // if the product of the slop1 and slop2 equals to -1 then the two lines are perpendicular
+            // if the product of slop1 and slop2 equals to -1 then the two lines are perpendicular
             return ((this.slop() * ln.slop()) == -1);
         }
         public double slop()
@@ -145,12 +141,13 @@ namespace TP04
             return Math.PI * Math.Pow(radius, 2);
         }
     }
-}
-class Program
-{
-    static void Main(string[] args)
+    class Program
     {
-        Console.WriteLine("Hello World!");
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Hello World!");
+        }
     }
 }
+
 
